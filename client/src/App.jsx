@@ -1,0 +1,14 @@
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import Home from './pages/Home';
+import NavBar from './components/NavBar';
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <NavBar />
+    <Home />
+  </StrictMode>
+);
+
+export default App;  // Ensure this line is present!
