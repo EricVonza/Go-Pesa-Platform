@@ -1,16 +1,18 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './index.css';
-import Home from './pages/Home';
-import Motivational_Section from './pages/Motivational_Section';
-import NavBar from './components/NavBar';
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
+import Home from "./pages/Home";
+import MotivationalSection from "./pages/Motivational_Section";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <NavBar />
-    <Home />
-    <Motivational_Section />
-  </StrictMode>
-);
+const App = () => {
+  return (
+    <BrowserRouter>
+      <NavBar />
+      <Home/>
+      <Footer />
 
-export default App;  // Ensure this line is present!
+    </BrowserRouter>
+  );
+};
+
+export default App;
