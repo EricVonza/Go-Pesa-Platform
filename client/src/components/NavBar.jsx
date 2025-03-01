@@ -27,14 +27,15 @@ const NavBar = () => {
           <Link to="/" className="text-white">Home</Link>
           <Link to="/login" className="text-white">Login</Link>
           <Link to="/contact" className="text-white">Contact</Link>
-          <div className="ml-4 flex space-x-2">
+          <Link to="/signup" className="text-white">Sign Up</Link>
+          {/*<div className="ml-4 flex space-x-2">
             <Link to="/login">
               <button className="bg-white text-purple-700 px-4 py-2 rounded-full">Login</button>
             </Link>
             <Link to="/signup">
               <button className="bg-purple-500 text-white px-4 py-2 rounded-full">Sign Up</button>
             </Link>
-          </div>
+          </div>*/}
         </div>
       </div>
     </nav>
