@@ -1,66 +1,67 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const [name,setName] = useState("");
+  const [email,setEmail] = useState("");
+  const [userName,setuserName] = useState("");
+  const [Password,setPassword] = useState("");
+  const [confirmPassword,setconfirmPassword] = useState("");
+  const collectData=()=>{
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    console.log(name,email);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Sign Up Data:", formData);
-  };
+  }
+
+
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold text-center mb-4">Sign Up</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Name</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
-          >
-            Sign Up
-          </button>
-        </form>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+      <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+        <p>
+
+        </p>
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          One Step Away From Financial Freedom
+        </h1>
+
+        <input
+          type="text"
+          placeholder="Enter Your Name"
+          className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={name} onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Enter Your Email"
+          className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={email} onChange={(e) => setEmail(e.target.value)}
+
+        />
+        <input
+          type="text"
+          placeholder="Enter Your Preferred Username"
+          className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={userName} onChange={(e) => setuserName(e.target.value)}
+
+        />
+        <input
+          type="password"
+          placeholder="Enter Your New Password"
+          className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={Password} onChange={(e) => setPassword(e.target.value)}
+
+        />
+        <input
+          type="password"
+          placeholder="Confirm Your Password"
+          className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={confirmPassword} onChange={(e) => setconfirmPassword(e.target.value)}
+
+        />
+
+        <button onClick={collectData} className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg hover:bg-blue-600 transition duration-300">
+          Sign Up
+        </button>
       </div>
     </div>
   );
