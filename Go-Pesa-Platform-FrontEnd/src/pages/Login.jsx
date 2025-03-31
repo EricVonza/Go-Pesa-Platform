@@ -1,37 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      alert('Login successful!');
+      console.log('Token:', response.data.token);
+
+      // Redirect to Home.jsx
+      navigate('/');
+    } catch (error) {
+      alert(error.response?.data?.error || 'Login failed');
+    }
+  };
+
   return (
-    <div className='justify-center items-center flex'>
-      <div className="w-[375px] h-[812px] relative bg-gradient-to-b from-[#1e213a] to-[#1b2735] overflow-hidden">
-      <div className="w-[337px] h-[502px] left-[19px] top-[152px] absolute opacity-10 bg-[#e1e3e6] rounded-[13px] border border-[#e2e3e6] backdrop-blur-[50px]" />
-      <div className="left-[110px] top-[85px] absolute text-[#fffdfd] text-[40px] font-normal font-['NATS']">GoPesa</div>
-      <div className="left-[40px] top-[170px] absolute text-[#fffdfd] text-[15px] font-extrabold font-['Montserrat']">Login</div>
-      <div className="left-[40px]Go-Pesa-Platform/src/components/NavBar.jsx top-[196px] absolute">
-        <span className="text-[#fffdfd] text-[13px] font-medium font-['Montserrat']">.</span>
-      </div>
-      <div className="left-[34px] top-[339px] absolute text-[#fffdfd] text-[13px] font-medium font-['Montserrat']">Email</div>
-      <div className="left-[34px] top-[503px] absolute text-[#fffdfd] text-[13px] font-medium font-['Montserrat']">
-        Passwordff
-      </div>
-
-      <div className="left-[34px] top-[503px] absolute text-[#fffdfd] text-[13px] font-medium font-['Montserrat'] mt-4">
-        Already have an account?
-      </div>
-
-      <div className="left-[292px] top-[503px] absolute text-[#7154fd] text-[13px] font-medium font-['Montserrat']">Show</div>
-      <div className="w-[295px] h-[35px] left-[34px] top-[294px] absolute rounded-lg border border-[#fffcfc]" />
-      <div className="w-[295px] h-[35px] left-[34px] top-[359px] absolute rounded-lg border border-[#fffcfc]" />
-      <div className="w-[295px] h-[35px] left-[34px] top-[422px] absolute rounded-lg border border-[#fffcfc]" />
-      <div className="w-[295px] h-[41px] left-[34px] top-[578px] absolute">
-        <div className="w-[295px] h-[38.33px] left-0 top-0 absolute bg-[#2f6e8b] rounded-lg" />
-        <div className="w-[53px] h-[29px] left-[121px] top-[12px] absolute text-[#f9f7f7] text-[13px] font-medium font-['Montserrat']">Login</div>
-      </div>
-      <div className="left-[76px] top-[233px] absolute">
+    <div className="pt-20 flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+      <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          Welcome Back to Financial Freedom
+        </h1>
+        <input
+          type="email"
+          placeholder="Enter Your Email"
+          className="w-full p-3 border border-gray-300 rounded-lg mb-4"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Enter Your Password"
+          className="w-full p-3 border border-gray-300 rounded-lg mb-4"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button
+          onClick={handleLogin}
+          className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg hover:bg-blue-600 transition duration-300"
+        >
+          Login
+        </button>
+        <p className="text-center text-gray-600 mt-4">
+          Don't have an account? <span className="text-blue-500 cursor-pointer">Sign Up</span>
+        </p>
       </div>
     </div>
-    </div>
-    
   );
 };
 

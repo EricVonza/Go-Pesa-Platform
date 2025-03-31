@@ -8,8 +8,14 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
-app.use(cors());
+// Configure CORS to allow only localhost:3000
+const corsOptions = {
+  origin: 'http://localhost:3000', // Allow only this origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+  credentials: true, // Allow cookies if needed
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // MongoDB Connection
