@@ -8,9 +8,9 @@ dotenv.config();
 
 const app = express();
 
-// Configure CORS to allow only localhost:3000
+// Configure CORS to allow only localhost:5173
 const corsOptions = {
-  origin: 'http://localhost:3000', // Allow only this origin
+  origin: 'http://localhost:5173', // Allow only this origin
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
   credentials: true, // Allow cookies if needed
 };
