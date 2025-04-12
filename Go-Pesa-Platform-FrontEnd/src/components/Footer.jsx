@@ -4,7 +4,7 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <div className="bg-gray-800 text-white text-center p-4">
+        <div className="bg-gray-800 text-white fixed bottom-0 w-full text-center p-4">
             {currentYear} All Rights Reserved, GoPesa
         </div>
     );
