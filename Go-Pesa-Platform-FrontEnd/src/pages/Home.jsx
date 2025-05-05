@@ -37,6 +37,43 @@ const Home = () => {
       {/* Personalized Greeting */}
       <h2 className="text-xl font-semibold mt-2">Hi {userName}!</h2>
 
+      {/* Referral and Stats Section */}
+      <div className="mt-8 w-full max-w-4xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-lg shadow-lg p-6">
+        <div className="flex justify-between items-center mb-6">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+            Copy Referral Link
+          </button>
+          <button className="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded-lg">
+            Get Help
+          </button>
+        </div>
+        <p className="text-center text-sm mb-6">
+          Earn <span className="font-bold">Ksh. 50</span> and <span className="font-bold">Ksh. 20</span> for every level 1 and 2 referral. You also get awarded <span className="font-bold">Ksh. 350</span> bonus when 30 clients join and activate, this week, with your link. <a href="#" className="underline">Learn more.</a>
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {/* Total Earned */}
+          <div className="bg-white text-gray-800 rounded-lg shadow-md p-4 text-center">
+            <p className="text-lg font-bold text-purple-500">Ksh. 1,000.30</p>
+            <p className="text-sm">Total Earned</p>
+          </div>
+          {/* Total Withdrawn */}
+          <div className="bg-white text-gray-800 rounded-lg shadow-md p-4 text-center">
+            <p className="text-lg font-bold text-purple-500">Ksh. 1,000.30</p>
+            <p className="text-sm">Total Withdrawn</p>
+          </div>
+          {/* Wallet Balance */}
+          <div className="bg-white text-gray-800 rounded-lg shadow-md p-4 text-center">
+            <p className="text-lg font-bold text-purple-500">Ksh. 1,000.30</p>
+            <p className="text-sm">Wallet Balance</p>
+          </div>
+          {/* Total Expenses */}
+          <div className="bg-white text-gray-800 rounded-lg shadow-md p-4 text-center">
+            <p className="text-lg font-bold text-purple-500">Ksh. 1,000.30</p>
+            <p className="text-sm">Total Expenses</p>
+          </div>
+        </div>
+      </div>
+
       {/* Winning Slot Image */}
       <img src={winningSlot} alt="Winning Slot" className="mt-6 w-64 h-auto rounded-lg shadow-lg" />
 

@@ -7,12 +7,30 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login state
+  const [isScrolled, setIsScrolled] = useState(false); // Track scroll state
   const navigate = useNavigate();
 
   useEffect(() => {
     // Check if the user is logged in
     const userName = localStorage.getItem("userName");
     setIsLoggedIn(!!userName); // Set to true if userName exists
+  }, []);
+
+  useEffect(() => {
+    // Add scroll event listener
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true); // Set to true when scrolled down
+      } else {
+        setIsScrolled(false); // Set to false when at the top
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll); // Cleanup listener
+    };
   }, []);
 
   const handleNavigation = (path) => {
@@ -32,7 +50,11 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-gray-800 p-4 fixed top-0 w-full z-50 shadow-lg">
+    <nav
+      className={`p-4 fixed top-0 w-full z-50 shadow-lg transition-colors duration-300 ${
+        isScrolled ? "bg-gray-800/80" : "bg-gray-800"
+      }`}
+    >
       {isLoading && <Loading />} {/* Show Loading component when isLoading is true */}
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo and Brand Name */}
