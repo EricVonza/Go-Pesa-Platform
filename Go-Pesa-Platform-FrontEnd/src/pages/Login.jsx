@@ -10,18 +10,30 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+
+      // Log the response to inspect its structure
+      console.log('API Response:', response.data);
+
+      // Dynamically handle the response structure
+      const userName = response.data?.user?.name || 'User'; // Default to 'User' if name is missing
+
+      // Store the user's name in localStorage
+      localStorage.setItem('userName', userName);
+
+      // Show success message
       alert('Login successful!');
-      console.log('Token:', response.data.token);
 
       // Redirect to Home.jsx
-      navigate('/');
+      navigate('/'); // Ensure this redirects to the Home page
     } catch (error) {
-      alert(error.response?.data?.error || 'Login failed');
+      // Handle errors properly
+      const errorMessage = error.response?.data?.error || error.message || 'Login failed';
+      alert(errorMessage);
     }
   };
 
   return (
-    <div className="pt-20 flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+    <div className="pt-20 flex flex-col items-center justify-center min-h-screen bg-purple-500 bg-gray-100 p-6">
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
         <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Welcome Back to Financial Freedom
@@ -47,7 +59,13 @@ const Login = () => {
           Login
         </button>
         <p className="text-center text-gray-600 mt-4">
-          Don't have an account? <span className="text-blue-500 cursor-pointer">Sign Up</span>
+          Don't have an account?{' '}
+          <span
+            className="text-blue-500 cursor-pointer"
+            onClick={() => navigate('/signup')}
+          >
+            Sign Up
+          </span>
         </p>
       </div>
     </div>

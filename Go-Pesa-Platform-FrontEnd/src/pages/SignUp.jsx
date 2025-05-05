@@ -23,7 +23,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="pt-20 flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+    <div className="pt-20 flex flex-col items-center justify-center min-h-screen bg-purple-800 p-6">
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
         <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
           One Step Away From Financial Freedom
