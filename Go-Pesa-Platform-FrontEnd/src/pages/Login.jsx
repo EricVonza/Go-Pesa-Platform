@@ -1,34 +1,49 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
+
+// Loading spinner component
+const LoadingSpinner = () => {
+  return (
+    <div className="flex justify-center items-center mt-4">
+      <div
+        className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+        role="status"
+      >
+        <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+          Loading...
+        </span>
+      </div>
+    </div>
+  );
+};
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [loading, setLoading] = useState(false); // Add loading state
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
+    setLoading(true); // Start loading
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
 
-      // Log the response to inspect its structure
       console.log('API Response:', response.data);
-
-      // Dynamically handle the response structure
-      const userName = response.data?.user?.name || 'User'; // Default to 'User' if name is missing
-
-      // Store the user's name in localStorage
+      const userName = response.data?.user?.name || 'User';
       localStorage.setItem('userName', userName);
 
-      // Show success message
       alert('Login successful!');
 
-      // Redirect to Home.jsx
-      navigate('/'); // Ensure this redirects to the Home page
+      // Simulate small delay so the loading spinner is noticeable
+      setTimeout(() => {
+        navigate('/');
+      }, 1000);
+
     } catch (error) {
-      // Handle errors properly
       const errorMessage = error.response?.data?.error || error.message || 'Login failed';
       alert(errorMessage);
+      setLoading(false); // Stop loading on error
     }
   };
 
@@ -54,10 +69,14 @@ const Login = () => {
         />
         <button
           onClick={handleLogin}
-          className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg hover:bg-blue-600 transition duration-300"
+          disabled={loading} // Disable button while loading
+          className={`w-full bg-blue-500 text-white font-bold py-3 rounded-lg hover:bg-blue-600 transition duration-300 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
         >
-          Login
+          {loading ? 'Logging in...' : 'Login'}
         </button>
+
+        {loading && <LoadingSpinner />} {/* Show spinner when loading */}
+
         <p className="text-center text-gray-600 mt-4">
           Don't have an account?{' '}
           <span
