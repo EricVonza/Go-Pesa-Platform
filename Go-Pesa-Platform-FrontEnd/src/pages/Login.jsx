@@ -27,7 +27,7 @@ const Login = () => {
   const handleLogin = async () => {
     setLoading(true); // Start loading
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const response = await axios.post('https://go-pesa-platform-backend.onrender.com:5001/api/auth/login', { email, password });
 
       console.log('API Response:', response.data);
       const userName = response.data?.user?.name || 'User';

@@ -10,7 +10,7 @@ const Home = () => {
     const token = localStorage.getItem('token'); // Assume token is stored in localStorage
     if (token) {
       axios
-        .get('http://localhost:5000/api/auth/users', {
+        .get('https://go-pesa-platform-backend.onrender.com:5001/api/auth/users', {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
